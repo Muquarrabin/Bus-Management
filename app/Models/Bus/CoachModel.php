@@ -28,7 +28,7 @@ class CoachModel extends Model
      * @var array
      */
     public static $insertRules = [
-        "bus_number" => "required|string|unique:coach|min:16",
+        "bus_number" => "required|string|unique:coach|min:10",
         "bus_seat_quantity" => "required|numeric",
         "coach_type" => "required|string",
     ];
@@ -39,7 +39,7 @@ class CoachModel extends Model
      * @var array
      */
     public static $updateRules = [
-        "bus_number" => "required|string|unique:coach|min:16",
+        "bus_number" => "required|string|unique:coach|min:10",
         "bus_seat_quantity" => "required|numeric",
         "coach_type" => "required|string",
     ];

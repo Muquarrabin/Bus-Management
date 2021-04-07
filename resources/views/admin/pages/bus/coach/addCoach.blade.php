@@ -122,10 +122,10 @@
                                 title: "Success " + responseCode,
                                 text: "Created Successfully",
                             });
-                            // setTimeout(redirectFunc, 2000);
-                            // function redirectFunc() {
-                            //       window.location.href = "@Url.Action("SupplierLists","Suppliers")";
-                            // }
+                            setTimeout(redirectFunc, 2000);
+                            function redirectFunc() {
+                                  window.location.href = "{{ url('/bus/coach-management/coaches') }}";
+                            }
                         }
                     },
                     error: function(jqXHR, exception) {
