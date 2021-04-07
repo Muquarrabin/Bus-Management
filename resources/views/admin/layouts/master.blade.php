@@ -1,81 +1,107 @@
 <!DOCTYPE html>
-    <!--
+<!--
     This is a starter template page. Use this page to start your new project from
     scratch. This page gets rid of all links and provides the needed markup only.
     -->
-    <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Bus Management | @yield('Page Title')</title>
-        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-        <!-- Bootstrap 3.3.2 -->
-        <link href="{{ asset("bower_components/admin-lte/bootstrap/dist/css/bootstrap.min.css") }}" rel="stylesheet" type="text/css" />
-        <!-- Font Awesome Icons -->
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-        <!-- Ionicons -->
-        <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
-        <!-- Theme style -->
-        <link href="{{ asset("bower_components/admin-lte/dist/css/AdminLTE.min.css")}}" rel="stylesheet" type="text/css" />
-        <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Bus Management | @yield('Page Title')</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+
+    <!-- CSRF -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- Bootstrap 3.3.2 -->
+    <link href="{{ asset('bower_components/admin-lte/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet"
+        type="text/css" />
+    <!-- Font Awesome Icons -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"
+        type="text/css" />
+    <!-- Ionicons -->
+    <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    <!-- Datatable -->
+    <link href="{{ asset('bower_components/admin-lte/datatables.net-bs/css/dataTables.bootstrap.min.css') }}"
+        rel="stylesheet" type="text/css" />
+    <!-- Theme style -->
+    <link href="{{ asset('bower_components/admin-lte/dist/css/AdminLTE.min.css') }}" rel="stylesheet"
+        type="text/css" />
+    <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
               page. However, you can choose any other skin. Make sure you
               apply the skin class to the body tag so the changes take effect.
         -->
-        <link href="{{ asset("bower_components/admin-lte/dist/css/skins/skin-blue.min.css")}}" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="{{ asset("bower_components/admin-lte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css") }}">
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
+    <link href="{{ asset('bower_components/admin-lte/dist/css/skins/skin-blue.min.css') }}" rel="stylesheet"
+        type="text/css" />
+    <link rel="stylesheet" href="{{ asset('bower_components/admin-lte/plugins/sweetalert2/sweetalert2.min.css') }}">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
-    </head>
-    <body class="skin-blue">
-        <div class="wrapper">
+</head>
 
-            <!-- Header -->
-            @include('admin/layouts/partials/header')
+<body class="skin-blue">
+    <div class="wrapper">
 
-            <!-- Sidebar -->
-            @include('admin/layouts/partials/sidebar')
+        <!-- Header -->
+        @include('admin/layouts/partials/header')
 
-            @yield('content')
-            <!-- Content Wrapper. Contains page content -->
-            {{-- <div class="content-wrapper"> --}}
-                <!-- Content Header (Page header) -->
-                {{-- <section class="content-header"> --}}
-                    {{-- <h1>
+        <!-- Sidebar -->
+        @include('admin/layouts/partials/sidebar')
+
+        @yield('content')
+        <!-- Content Wrapper. Contains page content -->
+        {{-- <div class="content-wrapper"> --}}
+        <!-- Content Header (Page header) -->
+        {{-- <section class="content-header"> --}}
+        {{-- <h1>
                         {{ $page_title or "Page Title" }}
                         <small>{{ $page_description or null }}</small>
                     </h1> --}}
-                    <!-- You can dynamically generate breadcrumbs here -->
-                    {{-- <ol class="breadcrumb"> --}}
-                        {{-- <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li> --}}
-                        {{-- <li class="active">Here</li>
+        <!-- You can dynamically generate breadcrumbs here -->
+        {{-- <ol class="breadcrumb"> --}}
+        {{-- <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li> --}}
+        {{-- <li class="active">Here</li>
                     </ol>
                 </section> --}}
 
-                <!-- Main content -->
-                {{-- <section class="content"> --}}
-                    <!-- Your Page Content Here -->
-                {{-- </section><!-- /.content --> --}}
-            {{-- </div><!-- /.content-wrapper --> --}}
+        <!-- Main content -->
+        {{-- <section class="content"> --}}
+        <!-- Your Page Content Here -->
+        {{-- </section><!-- /.content --> --}}
+        {{-- </div><!-- /.content-wrapper --> --}}
 
-            <!-- Footer -->
-            @include('admin/layouts/partials/footer')
+        <!-- Footer -->
+        @include('admin/layouts/partials/footer')
 
-        </div><!-- ./wrapper -->
+    </div><!-- ./wrapper -->
 
     <!-- REQUIRED JS SCRIPTS -->
 
     <!-- jQuery 2.1.3 -->
-    <script src="{{ asset ("bower_components/admin-lte/jquery/dist/jquery.min.js") }}"></script>
+    <script src="{{ asset('bower_components/admin-lte/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('bower_components/admin-lte/plugins/jquery-validation/dist/jquery.validate.min.js') }}">
+    </script>
+    <script
+        src="{{ asset('bower_components/admin-lte/plugins/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js') }}">
+    </script>
+    {{-- ajax header setup --}}
+    <script src="{{asset('js/ajaxSetup.js')}}"></script>
+
     <!-- Bootstrap 3.3.2 JS -->
-    <script src="{{ asset ("bower_components/admin-lte/bootstrap/dist/js/bootstrap.min.js") }}" type="text/javascript"></script>
-    <script src="{{ asset("bower_components/admin-lte/plugins/sweetalert2/sweetalert2.min.js") }}"></script>
+    <script src="{{ asset('bower_components/admin-lte/bootstrap/dist/js/bootstrap.min.js') }}"
+        type="text/javascript"></script>
+    <script src="{{ asset('bower_components/admin-lte/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+
+
+    <!-- Datatables -->
+    <script src="{{ asset('bower_components/admin-lte/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('bower_components/admin-lte/datatables.net-bs/js/dataTables.bootstrap.min.js') }}">
+    </script>
+
     <!-- AdminLTE App -->
-    <script src="{{ asset ("bower_components/admin-lte/dist/js/adminlte.min.js") }}" type="text/javascript"></script>
-    <script src="{{ asset("bower_components/admin-lte/plugins/jquery-validation/dist/jquery.validate.min.js") }}"></script>
-    <script src="{{ asset("bower_components/admin-lte/plugins/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js") }}"></script>
+    <script src="{{ asset('bower_components/admin-lte/dist/js/adminlte.min.js') }}" type="text/javascript"></script>
 
     @hasSection('addtional-scripts')
         @yield('addtional-scripts')
@@ -83,5 +109,6 @@
     <!-- Optionally, you can add Slimscroll and FastClick plugins.
           Both of these plugins are recommended to enhance the
           user experience -->
-    </body>
+</body>
+
 </html>

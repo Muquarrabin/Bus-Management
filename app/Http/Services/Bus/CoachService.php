@@ -82,4 +82,21 @@ class CoachService
 
         return $coachInfo;
     }
+     /**
+     * @name updateCoach
+     * @role update coach info
+     * @param  \Illuminate\Http\Request  $request
+     * @return \App\Models\Bus\CoachModel
+     */
+    public function updateCoach(Request $request,CoachModel $coach)
+    {
+        try {
+            $attributes = $this->mapCoachUpdateAttributes($request);
+            $response = $coach->update($attributes);
+            return $response;
+        } catch (\Throwable $th) {
+            //return $this->sendError($th->getMessage(), [], 500);
+            throw $th;
+        }
+    }
 }

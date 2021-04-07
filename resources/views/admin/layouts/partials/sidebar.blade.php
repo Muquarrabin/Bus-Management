@@ -45,7 +45,9 @@
               </span>
           </a>
           <ul class="treeview-menu">
-            <li class="{{ (request()->is('bus/coach-management*')) ? 'active' : '' }}"><a href="#"><i class="fa fa-dot-circle-o" ></i>Coach Management</a></li>
+            <li class="{{ (request()->is('bus/coach-management*')) ? 'active' : '' }}"><a href="{{ url('bus/coach-management/coaches') }}">
+                <i class="fa fa-dot-circle-o" ></i>Coach Management</a>
+            </li>
             <li><a href="#"><i class="fa fa-dot-circle-o" ></i>Schedule Management </a></li>
           </ul>
         </li>

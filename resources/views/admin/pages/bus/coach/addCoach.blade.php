@@ -52,10 +52,11 @@
                                         <option>Non AC</option>
                                     </select>
                                 </div>
+                                <button id="add_coach_form_btn" type="submit" class="btn btn-primary">Submit</button>
                             </div>
                             <!-- /.box-body -->
                             <div class="box-footer">
-                                <button id="add_coach_form_btn" type="submit" class="btn btn-primary">Submit</button>
+                                <a href="{{ url('/bus/coach-management/coaches') }}" >Back to Coach Details</a>
                             </div>
                         </form>
                     </div>
@@ -99,7 +100,6 @@
                     }
                 });
                 const coach = {
-                    "_token": "{{ csrf_token() }}",
                     "bus_number": $("#bus_number").val(),
                     "bus_seat_quantity": $("#bus_seat_qty").val(),
                     "coach_type": $("#coach_type").val(),
