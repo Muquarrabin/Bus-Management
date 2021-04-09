@@ -2,6 +2,8 @@
 
 namespace App\Http\Services\Bus;
 
+use App\Http\Requests\Bus\Coach\CoachInsertRequest;
+use App\Http\Requests\Bus\Coach\CoachUpdateRequest;
 use App\Models\Bus\CoachModel;
 use Illuminate\Http\Request;
 
@@ -10,11 +12,11 @@ class CoachService
     /**
      * @name mapCoachInsertAttributes
      * @role map request array into custom attribute array
-     * @param Illuminate\Http\Request $request
+     * @param App\Http\Requests\Bus\Coach\CoachInsertRequest $request
      * @return Array $attributes
      *
      */
-    public function mapCoachInsertAttributes(Request $request)
+    public function mapCoachInsertAttributes(CoachInsertRequest $request)
     {
         return  [
             "bus_number" => $request->bus_number,
@@ -25,11 +27,11 @@ class CoachService
     /**
      * @name mapCoachUpdateAttributes
      * @role map request array into custom attribute array
-     * @param Illuminate\Http\Request $request
+     * @param App\Http\Requests\Bus\Coach\CoachUpdateRequest $request
      * @return Array $attributes
      *
      */
-    public function mapCoachUpdateAttributes(Request $request)
+    public function mapCoachUpdateAttributes(CoachUpdateRequest $request)
     {
         return  [
             "bus_number" => $request->bus_number,
@@ -38,43 +40,14 @@ class CoachService
         ];
     }
 
-    /**
-     * @name validateCoachInsert
-     * Validate the coach insert request.
-     * @param  \Illuminate\Http\Request  $request
-     * @return void
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    public function validateCoachInsert(Request $request)
-    {
-        $request->validate(
-            CoachModel::$insertRules
-        );
-    }
-
-    /**
-     * @name validateCoachUpdate
-     * Validate the coach update request.
-     * @param  \Illuminate\Http\Request  $request
-     * @return void
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    public function validateCoachUpdate(Request $request)
-    {
-        $request->validate(
-            CoachModel::$updateRules
-        );
-    }
 
      /**
      * @name insertCoach
      * @role insert coach info
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\Bus\Coach\CoachInsertRequest $request
      * @return \App\Models\Bus\CoachModel
      */
-    public function insertCoach(Request $request)
+    public function insertCoach(CoachInsertRequest $request)
     {
         $coach_attributes=$this->mapCoachInsertAttributes($request);
 
@@ -85,10 +58,10 @@ class CoachService
      /**
      * @name updateCoach
      * @role update coach info
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\Bus\Coach\CoachUpdateRequest $request
      * @return \App\Models\Bus\CoachModel
      */
-    public function updateCoach(Request $request,CoachModel $coach)
+    public function updateCoach(CoachUpdateRequest $request,CoachModel $coach)
     {
         try {
             $attributes = $this->mapCoachUpdateAttributes($request);

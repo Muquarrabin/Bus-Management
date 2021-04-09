@@ -22,25 +22,4 @@ class CoachModel extends Model
         "coach_type",
     ];
 
-    /**
-     * Insert Vaildation Rules
-     *
-     * @var array
-     */
-    public static $insertRules = [
-        "bus_number" => "required|string|unique:coach|min:10",
-        "bus_seat_quantity" => "required|numeric",
-        "coach_type" => "required|string",
-    ];
-
-    /**
-     * update Vaildation Rules
-     *
-     * @var array
-     */
-    public static $updateRules = [
-        "bus_number" => "required|string|unique:coach|min:10",
-        "bus_seat_quantity" => "required|numeric",
-        "coach_type" => "required|string",
-    ];
 }

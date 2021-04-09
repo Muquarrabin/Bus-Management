@@ -33,8 +33,6 @@
                         <!-- /.box-header -->
                         <!-- form start -->
                         <form id="edit_coach_form" method="POST">
-                            @csrf
-
                             <input type="hidden" id="id" name="id" value="{{ $id }}" />
                             <div class="box-body">
                                 <div class="form-group">
@@ -60,8 +58,8 @@
                             </div>
                             <!-- /.box-body -->
                             <div class="box-footer">
-                                <a href="{{ url('/bus/coach-management/coaches') }}" >Back to Coach Details</a> |
-                                <a href="{{ url('/bus/coach-management/add-coach') }}" >Add Coach</a>
+                                <a href="{{ url('/bus/coach-management/coaches') }}">Back to Coach Details</a> |
+                                <a href="{{ url('/bus/coach-management/add-coach') }}">Add Coach</a>
                             </div>
                         </form>
                     </div>
@@ -105,7 +103,6 @@
                     }
                 });
                 const coach = {
-                    "_token": "{{ csrf_token() }}",
                     "id": $("#id").val(),
                     "bus_number": $("#bus_number").val(),
                     "bus_seat_quantity": $("#bus_seat_qty").val(),
@@ -130,8 +127,10 @@
                                 text: "Edited Successfully",
                             });
                             setTimeout(redirectFunc, 2000);
+
                             function redirectFunc() {
-                                  window.location.href = "{{ url('/bus/coach-management/coaches') }}";
+                                window.location.href =
+                                    "{{ url('/bus/coach-management/coaches') }}";
                             }
                         }
                     },
@@ -159,4 +158,3 @@
 
     </script>
 @endsection
-
