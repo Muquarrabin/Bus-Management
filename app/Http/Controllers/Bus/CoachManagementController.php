@@ -39,7 +39,10 @@ class CoachManagementController extends Controller
      */
     public function editCoachView(Request $request)
     {
-        $data = CoachModel::findOrFail($request->id);
+        $coach = CoachModel::findOrFail($request->id);
+        $data = [
+            'coach' => $coach
+        ];
         // dd($data);
         return view('admin.pages.bus.coach.editCoach', $data);
     }
@@ -64,13 +67,12 @@ class CoachManagementController extends Controller
      */
     public function addCoachAjax(CoachInsertRequest $request)
     {
-        $coachInfo = $this->_coachService->insertCoach($request);
+        $status_code = $this->_coachService->insertCoach($request);
 
-        if ($coachInfo) {
-            return new JsonResponse([], 201);
-        } else {
-            return new JsonResponse(['error' => 'Something went wrong!'], 500);
+        if ($status_code == 201) {
+            return new JsonResponse([], $status_code);
         }
+        return new JsonResponse(['error' => 'Something went wrong!'], $status_code);
     }
 
     /**
@@ -81,14 +83,13 @@ class CoachManagementController extends Controller
      */
     public function editCoachAjax(CoachUpdateRequest $request)
     {
-        $coachInfo=CoachModel::findOrfail($request->id);
-        $coachUpdateResponse = $this->_coachService->updateCoach($request,$coachInfo);
+        $coachInfo = CoachModel::findOrfail($request->id);
+        $coachUpdateResponseCode = $this->_coachService->updateCoach($request, $coachInfo);
 
-        if ($coachUpdateResponse) {
-            return new JsonResponse([], 200);
-        } else {
-            return new JsonResponse(['error' => 'Something went wrong!'], 500);
+        if ($coachUpdateResponseCode == 200) {
+            return new JsonResponse([], $coachUpdateResponseCode);
         }
+        return new JsonResponse(['error' => 'Something went wrong!'], $coachUpdateResponseCode);
     }
 
     /**
@@ -99,7 +100,7 @@ class CoachManagementController extends Controller
      */
     public function deleteCoachAjax(Request $request)
     {
-        $coachInfo=CoachModel::findOrfail($request->id);
+        $coachInfo = CoachModel::findOrfail($request->id);
         $coachDeleteResponse = $coachInfo->delete();
 
         if ($coachDeleteResponse) {
@@ -124,7 +125,7 @@ class CoachManagementController extends Controller
             ->addIndexColumn()
 
             ->addColumn('action', function ($coach) {
-                $updateUrl = url('bus/coach-management/edit-coach',[$coach->id]);
+                $updateUrl = url('bus/coach-management/edit-coach', [$coach->id]);
 
                 $markup = '';
 

@@ -45,10 +45,15 @@
               </span>
           </a>
           <ul class="treeview-menu">
-            <li class="{{ (request()->is('bus/coach-management*')) ? 'active' : '' }}"><a href="{{ url('bus/coach-management/coaches') }}">
+            <li class="{{ (request()->is('bus/coach-management*')) ? 'active' : '' }}">
+                <a href="{{ url('bus/coach-management/coaches') }}">
                 <i class="fa fa-dot-circle-o" ></i>Coach Management</a>
             </li>
-            <li><a href="#"><i class="fa fa-dot-circle-o" ></i>Schedule Management </a></li>
+            <li class="{{ (request()->is('bus/schedule-management*')) ? 'active' : '' }}">
+                <a href="#">
+                {{-- <a href="{{ url('bus/schedule-management/schedules') }}"> --}}
+                <i class="fa fa-dot-circle-o" ></i>Schedule Management </a>
+            </li>
           </ul>
         </li>
         <li class="treeview">
@@ -58,6 +63,7 @@
               </span>
           </a>
           <ul class="treeview-menu">
+            <li><a href="#"><i class="fa fa-dot-circle-o" ></i>Seat Configuration</a></li>
             <li><a href="#"><i class="fa fa-dot-circle-o" ></i>Book Tickets</a></li>
             <li><a href="#"><i class="fa fa-dot-circle-o" ></i>Cancel Tickets </a></li>
           </ul>

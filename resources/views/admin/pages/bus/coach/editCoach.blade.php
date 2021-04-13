@@ -33,24 +33,24 @@
                         <!-- /.box-header -->
                         <!-- form start -->
                         <form id="edit_coach_form" method="POST">
-                            <input type="hidden" id="id" name="id" value="{{ $id }}" />
+                            <input type="hidden" id="id" name="id" value="{{ $coach->id }}" />
                             <div class="box-body">
                                 <div class="form-group">
                                     <label for="bus_number">Bus Number</label>
                                     <input type="text" class="form-control" id="bus_number" placeholder="Enter Bus Number"
-                                        name="bus_number" value="{{ $bus_number }}">
+                                        name="bus_number" value="{{ $coach->bus_number }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="bus_seat_qty">Bus Seat Quantity</label>
                                     <input type="text" class="form-control" id="bus_seat_qty"
                                         placeholder="Enter Bus Seat Quantity" name="bus_seat_quantity"
-                                        value="{{ $bus_seat_quantity }}">
+                                        value="{{ $coach->bus_seat_quantity }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="coach_type">Coach Type</label>
                                     <select class="form-control" id="coach_type" name="coach_type">
-                                        <option {{ 'AC' == $coach_type ? 'selected' : '' }}>AC</option>
-                                        <option {{ 'Non AC' == $coach_type ? 'selected' : '' }}>Non AC
+                                        <option {{ 'AC' == $coach->coach_type ? 'selected' : '' }}>AC</option>
+                                        <option {{ 'Non AC' == $coach->coach_type ? 'selected' : '' }}>Non AC
                                         </option>
                                     </select>
                                 </div>
@@ -94,7 +94,7 @@
                     errorElement: 'span',
                     errorClass: 'help-block',
                     errorPlacement: function(error, element) {
-                        if (element.parent('.input-group-prepend').length) {
+                        if (element.parent('.input-group').length) {
                             $(element).siblings(".help-block").append(error);
                             //error.insertAfter(element.parent());
                         } else {

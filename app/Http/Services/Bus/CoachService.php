@@ -41,7 +41,7 @@ class CoachService
     }
 
 
-     /**
+    /**
      * @name insertCoach
      * @role insert coach info
      * @param  App\Http\Requests\Bus\Coach\CoachInsertRequest $request
@@ -49,27 +49,25 @@ class CoachService
      */
     public function insertCoach(CoachInsertRequest $request)
     {
-        $coach_attributes=$this->mapCoachInsertAttributes($request);
+        $coach_attributes = $this->mapCoachInsertAttributes($request);
 
-        $coachInfo=CoachModel::create($coach_attributes);
-
-        return $coachInfo;
+        $coachInfo = CoachModel::create($coach_attributes);
+        if ($coachInfo)
+            return 201;
+        return 500;
     }
-     /**
+    /**
      * @name updateCoach
      * @role update coach info
      * @param  App\Http\Requests\Bus\Coach\CoachUpdateRequest $request
      * @return \App\Models\Bus\CoachModel
      */
-    public function updateCoach(CoachUpdateRequest $request,CoachModel $coach)
+    public function updateCoach(CoachUpdateRequest $request, CoachModel $coach)
     {
-        try {
-            $attributes = $this->mapCoachUpdateAttributes($request);
-            $response = $coach->update($attributes);
-            return $response;
-        } catch (\Throwable $th) {
-            //return $this->sendError($th->getMessage(), [], 500);
-            throw $th;
-        }
+        $attributes = $this->mapCoachUpdateAttributes($request);
+        $response = $coach->update($attributes);
+        if ($response)
+            return 200;
+        return 500;
     }
 }

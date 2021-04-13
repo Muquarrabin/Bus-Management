@@ -23,6 +23,12 @@
     <!-- Datatable -->
     <link href="{{ asset('bower_components/admin-lte/datatables.net-bs/css/dataTables.bootstrap.min.css') }}"
         rel="stylesheet" type="text/css" />
+    <!--Datepicker -->
+    <link href="{{ asset('bower_components/admin-lte/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}"
+        rel="stylesheet" type="text/css" />
+    <!--Timepicker -->
+    <link href="{{ asset('bower_components/admin-lte/plugins/timepicker/bootstrap-timepicker.min.css') }}"
+        rel="stylesheet" type="text/css" />
     <!-- Theme style -->
     <link href="{{ asset('bower_components/admin-lte/dist/css/AdminLTE.min.css') }}" rel="stylesheet"
         type="text/css" />
@@ -87,7 +93,7 @@
         src="{{ asset('bower_components/admin-lte/plugins/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js') }}">
     </script>
     {{-- ajax header setup --}}
-    <script src="{{asset('js/ajaxSetup.js')}}"></script>
+    <script src="{{ asset('js/ajaxSetup.js') }}"></script>
 
     <!-- Bootstrap 3.3.2 JS -->
     <script src="{{ asset('bower_components/admin-lte/bootstrap/dist/js/bootstrap.min.js') }}"
@@ -100,6 +106,10 @@
     <script src="{{ asset('bower_components/admin-lte/datatables.net-bs/js/dataTables.bootstrap.min.js') }}">
     </script>
 
+    <!-- DatePicker -->
+    <script src="{{ asset('bower_components/admin-lte/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
+    <!-- TimePicker -->
+    <script src="{{ asset('bower_components/admin-lte/plugins/timepicker/bootstrap-timepicker.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('bower_components/admin-lte/dist/js/adminlte.min.js') }}" type="text/javascript"></script>
 

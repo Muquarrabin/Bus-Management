@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('Page Title')
-    Add Coach
+    Add Schedule
 @endsection
 
 @section('content')
@@ -9,13 +9,13 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                <b> Coach Management</b>
-                <small>Add Coach</small>
+                <b> Schedule Management</b>
+                <small>Add Schedule</small>
             </h1>
             <!-- You can dynamically generate breadcrumbs here -->
             <ol class="breadcrumb">
-                <li><a href="#">Coach Management</a></li>
-                <li class="active">Add Coach</li>
+                <li><a href="#">Schedule Management</a></li>
+                <li class="active">Add Schedule</li>
             </ol>
         </section>
 
@@ -28,35 +28,63 @@
                     <!-- general form elements -->
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title"><b>Add Coach</b></h3>
+                            <h3 class="box-title"><b>Add Schedule</b></h3>
                         </div>
                         <!-- /.box-header -->
                         <!-- form start -->
-                        <form id="add_coach_form" method="POST">
+                        <form id="add_schedule_form" method="POST">
                             @csrf
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="bus_number">Bus Number</label>
-                                    <input type="text" class="form-control" id="bus_number" placeholder="Enter Bus Number"
-                                        name="bus_number" >
-                                </div>
-                                <div class="form-group">
-                                    <label for="bus_seat_qty">Bus Seat Quantity</label>
-                                    <input type="text" class="form-control" id="bus_seat_qty"
-                                        placeholder="Enter Bus Seat Quantity" name="bus_seat_quantity" >
-                                </div>
-                                <div class="form-group">
-                                    <label for="coach_type">Coach Type</label>
-                                    <select class="form-control" id="coach_type" name="coach_type" >
-                                        <option>AC</option>
-                                        <option>Non AC</option>
+                                    <label for="coach_id">Coach Number</label>
+                                    <select class="form-control" id="coach_id" name="coach_id">
+                                        <option value="">--Select Coach Number--</option>
+                                        @foreach ($coaches as $coach)
+                                            <option value="{{ $coach->id }}">{{ $coach->bus_number }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
-                                <button id="add_coach_form_btn" type="submit" class="btn btn-primary">Submit</button>
+                                <div class="form-group">
+                                    <label for="start_route">From</label>
+                                    <input type="text" class="form-control" id="start_route"
+                                        placeholder="Enter Your Location" name="start_route">
+                                </div>
+                                <div class="form-group">
+                                    <label for="end_route">To</label>
+                                    <input type="text" class="form-control" id="end_route"
+                                        placeholder="Enter Your Destination" name="end_route">
+                                </div>
+                                <div class="form-group">
+                                    <label for="departure_date">Departure Date</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control datepicker" id="departure_date"
+                                        placeholder="Enter Departure Date" name="departure_date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                    </div>
+                                    <!-- /.input group -->
+                                </div>
+                                <div class="form-group">
+                                    <label for="departure_time">Departure Time</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control timepicker" id="departure_time"
+                                        placeholder="Enter Departure Time" name="departure_time">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-clock-o"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="bus_driver">Bus Driver</label>
+                                    <input type="text" class="form-control" id="bus_driver"
+                                        placeholder="Enter Bus Driver Name" name="bus_driver">
+                                </div>
+                                <button id="add_schedule_form_btn" type="submit" class="btn btn-primary">Submit</button>
                             </div>
                             <!-- /.box-body -->
                             <div class="box-footer">
-                                <a href="{{ url('/bus/coach-management/coaches') }}" >Back to Coach Details</a>
+                                <a href="{{ url('/bus/schedule-management/schedules') }}">Back to Schedule Details</a>
                             </div>
                         </form>
                     </div>
@@ -71,6 +99,14 @@
 @section('addtional-scripts')
     <script>
         $(document).ready(function() {
+            //Timepicker
+            $('.timepicker').timepicker({
+                showInputs: false
+            });
+            //Datepicker
+            $('.datepicker').datepicker({
+                showInputs: false
+            });
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
@@ -78,9 +114,9 @@
                 timer: 3000
             });
             //  const EndPoint = '@EndPoint.SupplierModuleEndpoint';
-            $("#add_coach_form_btn").click(function(e) {
+            $("#add_schedule_form_btn").click(function(e) {
                 e.preventDefault();
-                $("#add_coach_form").validate({
+                $("#add_schedule_form").validate({
                     highlight: function(element) {
                         jQuery(element).closest('.form-group').addClass('has-error');
                     },
@@ -99,18 +135,21 @@
                         }
                     }
                 });
-                const coach = {
-                    "bus_number": $("#bus_number").val(),
-                    "bus_seat_quantity": $("#bus_seat_qty").val(),
-                    "coach_type": $("#coach_type").val(),
+                const schedule = {
+                    "coach_id": $("#coach_id").val(),
+                    "start_route": $("#start_route").val(),
+                    "end_route": $("#end_route").val(),
+                    "departure_date": $("#departure_date").val(),
+                    "departure_time": $("#departure_time").val(),
+                    "bus_driver": $("#bus_driver").val(),
                 }
-                const coachJson = JSON.stringify(coach);
-                console.log(coachJson);
+                const scheduleJson = JSON.stringify(schedule);
+                console.log(scheduleJson);
                 $.ajax({
                     // url: EndPoint + 'supplier/CreateSupplier',
-                    url: '{{ url('bus/coach-management/add-coach-ajax') }}',
+                    url: '{{ url('bus/schedule-management/add-schedule-ajax') }}',
                     type: 'POST',
-                    data: JSON.stringify(coach),
+                    data: JSON.stringify(schedule),
                     dataType: 'json',
                     contentType: 'application/json; charset=utf-8',
                     success: function(data, textStatus, xhr) {
@@ -123,8 +162,10 @@
                                 text: "Created Successfully",
                             });
                             setTimeout(redirectFunc, 2000);
+
                             function redirectFunc() {
-                                  window.location.href = "{{ url('/bus/coach-management/coaches') }}";
+                                window.location.href =
+                                    "{{ url('/bus/schedule-management/schedules') }}";
                             }
                         }
                     },
@@ -137,7 +178,7 @@
                         });
                         if (jqXHR.status == 422) {
                             console.log(jqXHR.responseJSON.errors);
-                            var validator = $('#add_coach_form').validate();
+                            var validator = $('#add_schedule_form').validate();
                             var objErrors = {};
                             $.each(jqXHR.responseJSON.errors, function(key, val) {
                                 objErrors[key] = val;
