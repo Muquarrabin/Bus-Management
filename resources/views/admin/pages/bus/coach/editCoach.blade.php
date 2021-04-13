@@ -96,7 +96,7 @@
                     errorPlacement: function(error, element) {
                         if (element.parent('.input-group').length) {
                             $(element).siblings(".help-block").append(error);
-                            //error.insertAfter(element.parent());
+                            error.insertAfter(element.parent());
                         } else {
                             error.insertAfter(element);
                         }

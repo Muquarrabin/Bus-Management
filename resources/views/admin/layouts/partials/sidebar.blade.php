@@ -50,8 +50,8 @@
                 <i class="fa fa-dot-circle-o" ></i>Coach Management</a>
             </li>
             <li class="{{ (request()->is('bus/schedule-management*')) ? 'active' : '' }}">
-                <a href="#">
-                {{-- <a href="{{ url('bus/schedule-management/schedules') }}"> --}}
+                {{-- <a href="#"> --}}
+                <a href="{{ url('bus/schedule-management/schedules') }}">
                 <i class="fa fa-dot-circle-o" ></i>Schedule Management </a>
             </li>
           </ul>

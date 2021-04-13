@@ -90,7 +90,8 @@ class ScheduleService
             $start_time = Carbon::parse($coachInfo->departure_time);
             $end_time = Carbon::parse($scheduleInfo->departure_time);
             $timeDiff = $start_time->diffInHours($end_time);
-            if ($timeDiff < 3 )
+            $reverseTimeDiff= $end_time->diffInHours($start_time);
+            if ($timeDiff < 3 || $reverseTimeDiff < 3)
                 return true;
         }
         return false;
@@ -105,7 +106,8 @@ class ScheduleService
             $start_time = Carbon::parse($coachInfo->departure_time);
             $end_time = Carbon::parse($scheduleInfo->departure_time);
             $timeDiff = $start_time->diffInHours($end_time);
-            if ($timeDiff < 3 && !($coachInfo->departure_time==$scheduleInfo->departure_time))
+            $reverseTimeDiff= $end_time->diffInHours($start_time);
+            if ($timeDiff < 3 || $reverseTimeDiff < 3 && !($coachInfo->departure_time==$scheduleInfo->departure_time))
                 return true;
         }
         return false;

@@ -58,22 +58,23 @@
                                 <div class="form-group">
                                     <label for="departure_date">Departure Date</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control datepicker" id="departure_date"
-                                        placeholder="Enter Departure Date" name="departure_date" value="{{ $schedule->departure_date }}">
                                         <div class="input-group-addon">
                                             <i class="fa fa-calendar"></i>
                                         </div>
+                                        <input type="text" class="form-control datepicker" id="departure_date"
+                                        placeholder="Enter Departure Date" name="departure_date" value="{{ $schedule->departure_date }}">
                                     </div>
                                     <!-- /.input group -->
                                 </div>
                                 <div class="form-group">
                                     <label for="departure_time">Departure Time</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control timepicker" id="departure_time"
-                                        placeholder="Enter Departure Time" name="departure_time" value="{{ $schedule->departure_time }}">
                                         <div class="input-group-addon">
                                             <i class="fa fa-clock-o"></i>
                                         </div>
+                                        <input type="text" class="form-control timepicker" id="departure_time"
+                                        placeholder="Enter Departure Time" name="departure_time" value="{{ $schedule->departure_time }}">
+
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -131,7 +132,7 @@
                     errorPlacement: function(error, element) {
                         if (element.parent('.input-group').length) {
                             $(element).siblings(".help-block").append(error);
-                            //error.insertAfter(element.parent());
+                            error.insertAfter(element.parent());
                         } else {
                             error.insertAfter(element);
                         }
