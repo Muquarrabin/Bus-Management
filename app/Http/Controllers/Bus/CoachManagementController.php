@@ -72,7 +72,7 @@ class CoachManagementController extends Controller
         if ($status_code == 201) {
             return new JsonResponse([], $status_code);
         }
-        return new JsonResponse(['error' => 'Something went wrong!'], $status_code);
+        return new JsonResponse(['error' => 'Something went wrong!'], 500);
     }
 
     /**
@@ -89,7 +89,7 @@ class CoachManagementController extends Controller
         if ($coachUpdateResponseCode == 200) {
             return new JsonResponse([], $coachUpdateResponseCode);
         }
-        return new JsonResponse(['error' => 'Something went wrong!'], $coachUpdateResponseCode);
+        return new JsonResponse(['error' => 'Something went wrong!'], 500);
     }
 
     /**

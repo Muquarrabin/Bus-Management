@@ -56,16 +56,22 @@
             </li>
           </ul>
         </li>
-        <li class="treeview">
+        <li class="treeview {{ (request()->is('ticket*')) ? 'active menu-open' : '' }}">
           <a href="#"><i class="fa fa-ticket"></i> <span>Ticket Management</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="#"><i class="fa fa-dot-circle-o" ></i>Seat Configuration</a></li>
-            <li><a href="#"><i class="fa fa-dot-circle-o" ></i>Book Tickets</a></li>
-            <li><a href="#"><i class="fa fa-dot-circle-o" ></i>Cancel Tickets </a></li>
+            <li class="{{ (request()->is('ticket/seat-configuration*')) ? 'active' : '' }}">
+                <a href="{{ url('ticket/seat-configuration/details') }}"><i class="fa fa-dot-circle-o" ></i>Seat Configuration</a>
+            </li>
+            <li class="{{ (request()->is('ticket/book-ticket*')) ? 'active' : '' }}">
+                <a href="{{ url('ticket/book-ticket/add-booking') }}"><i class="fa fa-dot-circle-o" ></i>Book Tickets</a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-dot-circle-o" ></i>Cancel Tickets </a>
+            </li>
           </ul>
         </li>
         <li class="treeview">

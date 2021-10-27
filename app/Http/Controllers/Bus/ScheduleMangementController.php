@@ -142,7 +142,7 @@ class ScheduleMangementController extends Controller
                 return $schedule->coach->bus_number;
             })
             ->editColumn('departure_date', function ($schedule) {
-                $schedule->departure_date=date('m/d/Y', strtotime($schedule->departure_date));
+            $schedule->departure_date=date('d/m/Y', strtotime($schedule->departure_date));
                 return $schedule->departure_date;
             })
             ->editColumn('departure_time', function ($schedule) {

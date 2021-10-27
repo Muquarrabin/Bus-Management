@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Models\Bus;
+namespace App\Models\Ticket;
 
-use App\Models\Ticket\BookingModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Bus\CoachModel;
 
-class ScheduleModel extends Model
+class SeatConfigModel extends Model
 {
     use HasFactory,SoftDeletes;
 
-    protected $table = "schedule";
+    protected $table = "seat_config";
     /**
      * The attributes that are mass assignable.
      *
@@ -19,11 +19,9 @@ class ScheduleModel extends Model
      */
     protected $fillable = [
         "coach_id",
-        "start_route",
-        "end_route",
-        "departure_date",
-        "departure_time",
-        "bus_driver"
+        "seat_type",
+        "price",
+
     ];
 
     //relation
@@ -31,10 +29,4 @@ class ScheduleModel extends Model
     {
         return $this->belongsTo(CoachModel::class,'coach_id','id');
     }
-
-    public function booking()
-    {
-        return $this->hasMany(BookingModel::class,'schedule_id','id');
-    }
-
 }

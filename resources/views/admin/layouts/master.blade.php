@@ -29,6 +29,9 @@
     <!--Timepicker -->
     <link href="{{ asset('bower_components/admin-lte/plugins/timepicker/bootstrap-timepicker.min.css') }}"
         rel="stylesheet" type="text/css" />
+    <!--Select2 -->
+    <link href="{{ asset('bower_components/admin-lte/select2/dist/css/select2.min.css') }}"
+        rel="stylesheet" type="text/css" />
     <!-- Theme style -->
     <link href="{{ asset('bower_components/admin-lte/dist/css/AdminLTE.min.css') }}" rel="stylesheet"
         type="text/css" />
@@ -110,12 +113,19 @@
     <script src="{{ asset('bower_components/admin-lte/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
     <!-- TimePicker -->
     <script src="{{ asset('bower_components/admin-lte/plugins/timepicker/bootstrap-timepicker.min.js') }}"></script>
+    <!-- Select2 -->
+    <script src="{{ asset('bower_components/admin-lte/select2/dist/js/select2.full.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('bower_components/admin-lte/dist/js/adminlte.min.js') }}" type="text/javascript"></script>
 
     @hasSection('addtional-scripts')
         @yield('addtional-scripts')
     @endif
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+    </script>
     <!-- Optionally, you can add Slimscroll and FastClick plugins.
           Both of these plugins are recommended to enhance the
           user experience -->

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Bus\CoachManagementController;
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,14 +16,19 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('admin.layouts.master');
-});
+// Route::get('/', function () {
+//     return view('admin.layouts.master');
+// });
+Route::get('/',[CoachManagementController::class,'coachDetalisView']);
 
 //coach management
 include('bus/coachManageRoute.php');
 //schedule management
 include('bus/scheduleManageRoute.php');
+//seat configuration
+include('ticket/seatConfigRoute.php');
+//seat booking
+include('ticket/bookingRoute.php');
 
 
 // Auth::routes();
