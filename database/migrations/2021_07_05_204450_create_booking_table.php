@@ -17,6 +17,7 @@ class CreateBookingTable extends Migration
             $table->id();
             $table->foreignId('schedule_id')->constrained('schedule');
             $table->foreignId('customer_id')->constrained('customer');
+            $table->string('ticket_no')->unique();
             $table->string('seat_ids');
             $table->double('total_price');
             $table->string('payment_type');

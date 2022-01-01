@@ -4,5 +4,5 @@
         Anything you want
     </div>
     <!-- Default to the left -->
-    <strong>Copyright © 2021 <a href="#">Nasif Muquarrabin & Mahabub Rahaman</a>.</strong> All rights reserved.
+    <strong>Copyright © 2021 <a href="#">Niloy Barua</a>.</strong> All rights reserved.
 </footer>

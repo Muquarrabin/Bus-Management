@@ -16,7 +16,7 @@ class CreateCustomerTable extends Migration
         Schema::create('customer', function (Blueprint $table) {
             $table->id();
             $table->string('customer_name');
-            $table->string('customer_mobile')->unique();
+            $table->string('customer_mobile');
             $table->string('customer_address');
             $table->timestamps();
             $table->softDeletes();

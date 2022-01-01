@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Bus\CoachManagementController;
+use App\Http\Controllers\Ticket\BookingController;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -17,9 +18,9 @@ use Illuminate\Support\Facades\Auth;
 */
 
 // Route::get('/', function () {
-//     return view('admin.layouts.master');
+//     return view('home');
 // });
-Route::get('/',[CoachManagementController::class,'coachDetalisView']);
+Route::get('/',[BookingController::class,'addBookingView']);
 
 //coach management
 include('bus/coachManageRoute.php');
@@ -31,6 +32,8 @@ include('ticket/seatConfigRoute.php');
 include('ticket/bookingRoute.php');
 
 
-// Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

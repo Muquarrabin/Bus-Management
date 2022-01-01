@@ -18,6 +18,7 @@ class BookingModel extends Model
      * @var array
      */
     protected $fillable = [
+        "ticket_no",
         "schedule_id",
         "seat_ids",
         "total_price",

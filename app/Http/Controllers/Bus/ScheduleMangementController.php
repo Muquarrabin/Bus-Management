@@ -58,12 +58,12 @@ class ScheduleMangementController extends Controller
         return view('admin.pages.bus.schedule.editSchedule', $data);
     }
     /**
-     * @name scheduleDetalisView
+     * @name scheduleDetailsView
      * @role load  schedule details view
      * @param null
      * @return view('admin.pages.bus.schedule.scheduleDetails')
      */
-    public function scheduleDetalisView()
+    public function scheduleDetailsView()
     {
 
         return view('admin.pages.bus.schedule.scheduleDetails');

@@ -48,12 +48,12 @@ class CoachManagementController extends Controller
     }
 
     /**
-     * @name coachDetalisView
+     * @name coachDetailsView
      * @role load  coach details view
      * @param null
      * @return view('admin.pages.bus.coach.coachDetails')
      */
-    public function coachDetalisView()
+    public function coachDetailsView()
     {
 
         return view('admin.pages.bus.coach.coachDetails');
