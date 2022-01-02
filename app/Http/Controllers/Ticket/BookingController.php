@@ -30,7 +30,7 @@ class BookingController extends Controller
         $schedules = ScheduleModel::query()
             ->with(['coach.seatConfig'])
             ->where('departure_date','>=',$date)
-            ->whereRaw('IF(departure_date <= '.$date.', departure_time, departure_time ) >= ?',[$time])
+            ->orWhereRaw('IF(departure_date <= '.$date.', departure_time, departure_time ) >= ?',[$time])
             ->get();
         $coaches= CoachModel::all();
         $data = [
